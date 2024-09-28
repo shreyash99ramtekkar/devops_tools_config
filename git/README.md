@@ -30,3 +30,23 @@ git config --list
 
 # if you want to change the editor for git
 git config --global core.editor "subl -n -w"
+
+
+
+# SSH key configuration
+
+##enter following command on the system
+ssh-keygen -k rsa -b 4096 -C 'github'
+#copy the file content
+cat ~/.ssh/id_rsa.pub content 
+#Copy the content to github
+copy the key to github setting-->ssh keys
+#Verify the connection to github
+ssh -T git@github.com
+#Check the remote url for the repository
+git remote -v
+# if you are using http replace the url with git
+git remote set-url origin git-url
+# Check the remote url again
+git remote get-url origin
+
