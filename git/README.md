@@ -40,7 +40,7 @@ git config --global core.editor "subl -n -w"
 
 ```bash
 ## enter following command on the system
-ssh-keygen -k rsa -b 4096 -C 'github'
+ssh-keygen -t rsa -b 4096 -C 'github'
 
 ## copy the file content
 cat ~/.ssh/id_rsa.pub content\
