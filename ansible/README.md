@@ -16,7 +16,7 @@ You can setup in cloud or virtualmachine using virtualization.
 
 #### Configure the following
 
-```
+```bash
 # Step 1: Create ansadmin user across all servers
 useradd -s /bin/bash -m -d /home/ansadmin ansadmin
 
@@ -39,5 +39,41 @@ echo "ip-host" >> hosts
 # Step 5 : Verify connectivity from your ansible controller node to ansible managed nodes using
 ansible all -m ping -i ./hosts
 ansible all -m ansible.builtin.ping
+```
 
+### Setup
+
+```bash
+# clone the repository
+git clone https://github.com/shreyash99ramtekkar/devops_tools_config.git
+
+# Copy the ansible folder into the directory you want to work in
+
+cp -r ./devops_tools_config/ansible/ansible /home/${USER}
+
+# Setup the configr as per your need
+
+vim /home/${USER}/ansible/ansible.cfg
+
+# Start working
+
+
+```
+
+
+
+### Authentication using username and password
+
+```bash
+# Edit the file
+vim /etc/sshd/sshd_config
+
+#Search for the string PasswordAuthentication and change its value to yes
+
+PasswordAuthentication yes
+
+# Restart the service
+
+sudo systemctl restart sshd
+```
 
