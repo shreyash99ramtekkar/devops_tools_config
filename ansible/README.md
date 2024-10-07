@@ -75,5 +75,13 @@ PasswordAuthentication yes
 # Restart the service
 
 sudo systemctl restart sshd
+
+# Test using password from controller
+ansible all -m ping --user ansadmin -k
+
+# In case it ask to install the sshpass 
+apt-get install sshpass
+
+
 ```
 
