@@ -85,3 +85,37 @@ apt-get install sshpass
 
 ```
 
+
+### Custom facts - can be used to keep track of application version
+```bash
+
+# Create a facts directory on the manged nodes
+ansible all -m file -a 'path=/etc/ansible/facts.d state=directory' -b
+
+# Copy the fact file to the managed nodes
+ansible all -m copy -a 'src=java.fact dest=/etc/ansible/facts.d/java.fact mode=0755' -b
+
+# Check the facts
+ansible all -m setup -a 'filter=ansible_local'
+
+
+
+
+```
+
+
+### Good Habbits
+
+```bash
+# Check which configration file its using
+ansible --version
+
+
+# check on which server the playbook is going to run
+ansible <group-name> --list 
+
+# Dry run the command
+
+
+```
+
