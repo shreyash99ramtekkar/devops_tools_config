@@ -1,0 +1,18 @@
+---
+- name: BoilerPlate play 1
+  hosts: dev
+  gather_facts: no
+  become: no
+  tasks:
+     - name: Debug statement
+       ansible.builtin.debug:
+         msg: "Hello World playbook play 1"
+
+- name: BoilerPlate play 2
+  hosts: qa
+  gather_facts: no
+  become: no
+  tasks:
+     - name: Debug statement
+       ansible.builtin.debug:
+         msg: "Hello World playbook play 2"

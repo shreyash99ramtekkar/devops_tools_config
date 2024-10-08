@@ -124,7 +124,8 @@ ansible <group-name> --list
 ansible-playbook main.yaml -e 'reqHosts=dev'
 # inside the playbook you need to write   hosts: "{{reqHosts}}"
 
-
+# Observed the play recap after the execution
+ok,ignored,skipped,failed,rescued,changed,unreachable
 
 ```
 
