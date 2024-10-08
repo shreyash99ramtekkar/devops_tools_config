@@ -1,12 +1,14 @@
 ---
 - name: BoilerPlate play 1
-  hosts: dev
+  hosts: "{{ reqHosts }}"
   gather_facts: no
   become: no
+  vars:
+     message: "Hello World"
   tasks:
      - name: Debug statement
        ansible.builtin.debug:
-         msg: "Hello World playbook play 1"
+         msg: "{{ message }} playbook play 1"
 
 - name: BoilerPlate play 2
   hosts: qa

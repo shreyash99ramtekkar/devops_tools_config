@@ -1,6 +1,4 @@
-[all]
 # for safety reason in case if you run all mistakenly so it will only run on dev server
-dev
 
 
 [dev]
