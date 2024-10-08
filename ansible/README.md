@@ -57,6 +57,9 @@ vim /home/${USER}/ansible/ansible.cfg
 
 # Start working
 
+# Connect to the ansible controller using VS code 
+# Install the ssh plugin in the VS Code on your laptop and connect to the remote host ansible folder
+
 
 ```
 
@@ -115,6 +118,12 @@ ansible --version
 ansible <group-name> --list 
 
 # Dry run the command
+
+
+# While running the playbook pass the hosts as the varaible
+ansible-playbook main.yaml -e 'reqHosts=dev'
+# inside the playbook you need to write   hosts: "{{reqHosts}}"
+
 
 
 ```
