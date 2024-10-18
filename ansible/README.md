@@ -117,6 +117,13 @@ ansible --version
 # check on which server the playbook is going to run
 ansible <group-name> --list 
 
+# Check the Playbook syntax
+ansible-playbook main.yaml --syntax-check
+
+# Use ansible-lint to find potential errors, syntax error, undefined variables etc in playbook
+ansible-lint main.yaml
+
+
 # Dry run the command
 
 
