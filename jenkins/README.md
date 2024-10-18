@@ -3,7 +3,7 @@
 
 # Local Machine 
 
-###  Installing the server on docker
+##  Installing the server on docker
 
 The steps are taken from the below site and run with little modification
 https://www.jenkins.io/doc/book/installing/docker/
@@ -77,3 +77,59 @@ docker run \
   myjenkins-blueocean:2.462.3-1
 ```
 
+##  Installing the server on VM
+
+
+Server Config - Ubuntu VM
+
+Refer: https://pkg.jenkins.io/debian-stable/
+
+
+
+# Setup Details
+
+### Step 1: Install the JDK 
+
+1. Install the 'Oracle Java SE Development Kit Installer' Plugin from plugin section or go to  JDK download link(https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html, https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html)
+<!-- 2. Copy the link tar/gz accoding to the os
+3. Go to Jenkins -- Manage Jenkins ---/> Tools
+4. Configure the JDK like given in the image![JDK Jenkins Configuration](image.png) -->
+2. Install java on the Jenkins server and node
+```bash
+wget https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb
+sudo dpkg -i jdk-17.0.12_linux-x64_bin.deb
+```
+3. Point the JDK in the global configuration as shown in the image
+![alt text](image-2.png)
+
+### Step 2: Install the Maven
+
+1. Go to Jenkins -- Manage Jenkins ---> Tools
+2. Configure the Maven like given in the image![Maven Jenkins Configruation](image-1.png)
+
+
+
+### Step 3: Configuring Github Integration
+1. Generate the ssh key pair on the nodes - server
+```bash
+ssh-keygen -t rsa -b 4096 -C 'jenkins github'
+```
+2. Copy the key from ~/.ssh/id_rsa.pub to the gihub setting ssh and gpg key
+
+3. Check the connection
+```bash
+ssh -T git@github.com
+```
+4. Jenkins nodes will be able to connect to the github
+
+
+### Step 4: Managed nodes - Master Salve
+Why we need it
+• Build jobs require resources, and they compete for resource availability
+• A different runtime environment is required for different build jobs
+• It distributes the load across slave nodes
+
+
+1. Go to the Global jenkins setting and click on the Nodes
+2. Configure a new node with the proper lables and tools
+3. install the agent on the node (Click on the status icon you will see the steps necessary)
