@@ -131,5 +131,22 @@ Why we need it
 
 
 1. Go to the Global jenkins setting and click on the Nodes
-2. Configure a new node with the proper lables and tools
+2. Configure a new node with the proper lables and tools(jdk)
 3. install the agent on the node (Click on the status icon you will see the steps necessary)
+4. Make sure whenever nodes restart it should automatically start agent - crontab -entry
+```bash
+java -jar agent.jar -url http://{ip}:8080/ -secret fed49945d8a2a62de3957cb1e91ac84aef2d9a80be4ea97ab3e736d9947df62f -name ubuntuNode -workDir ""
+```
+4. If you are getting following error go to Security ---> agent ---> Random and save
+```bash
+INFO: Could not locate server among [http://192.168.1.39:8080/]; waiting 10 seconds before retry
+java.io.IOException: http://192.168.1.39:8080/tcpSlaveAgentListener/ is invalid: 404 Not Found
+
+```
+
+
+### Step 5: Setup the Notification - Slack 
+Ref: https://plugins.jenkins.io/slack/
+1. Create secrets
+2. Follow the documentation
+![alt text](image-3.png)
