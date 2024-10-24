@@ -62,3 +62,63 @@ git remote get-url origin
 
 ```
 
+
+
+# Habbits - Best Practice - Sequence
+
+1. Check your current branch
+```bash
+git branch
+```
+2. Create a feature branch for each new feature
+```bash
+git checkout -b new_branch
+git checkout branch_name
+```
+
+3. pull the latest changes / use rebase insted of 3 way marge
+```bash
+#checkout the branch 
+git pull --rebase <remote-name> <branch-name>
+```
+
+4. Solving a conflit: Discuss with the project patner and then commit what is acceptable
+
+5. Complete a fuction or bug and then commit
+```bash
+git diff 
+git log --oneline
+```
+
+6. Write description properly when completed with feature 
+
+7. In case of merging check how it can be done to keep single line project history: ff merge, no ff, 3 way, rebase
+```bash
+git diff 
+git merge -- fast forward, no ff, or 3 way - solve conflits
+git log
+```
+8. Use pull request to merge the changes
+
+
+
+
+# Debugging
+
+```bash
+# Search for perticular string
+git grep 'String'
+
+# Find the metadata of all the commit in the file
+git blame filename
+git show <hash_id>
+
+#Find you want to know which commit caused the bug
+git bisect start
+git bisect good <Working_hash_id>
+git bisect bad <non_working_hash_id>
+```
+
+
+
+
