@@ -1,0 +1,16 @@
+# once the pod is assigned to a node, it will be scheduled to that node.
+# to move the pod to another node, you need to delete the binding and create a new one.
+# This is a manual binding definition for a pod named nginx to a node named node01.
+# you need to do curl request to the Kubernetes API server to create this binding.
+# the sample curl request is:
+# curl -X POST -H "Content-Type: application/json" -d @pod-bind-definition.yaml http://<kubernetes-api-server>/api/v1/namespaces/default/pods/nginx/binding
+
+
+apiVersion: v1
+kind: Binding
+metadata:
+  name: nginx
+target:
+  apiVersion: v1
+  kind: Node
+  name: node01
