@@ -1,0 +1,22 @@
+---
+- name: BoilerPlate play 1
+  hosts: "{{ reqHosts }}"
+  gather_facts: yes
+  become: no
+  vars:
+     message: "Hello World"
+  tasks:
+     - name: Debug statement
+       ansible.builtin.debug:
+         msg: "{{ message }} playbook play 1"
+
+- name: BoilerPlate play 2
+  hosts: qa
+  gather_facts: no
+  become: no
+  vars_files: 
+    - vars.yaml
+  tasks:
+     - name: Debug statement
+       ansible.builtin.debug:
+         msg: "Hello World playbook play 2 using tool {{ tool }}"

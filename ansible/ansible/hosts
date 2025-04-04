@@ -1,0 +1,17 @@
+# for safety reason in case if you run all mistakenly so it will only run on dev server
+
+
+[dev]
+10.20.30.198
+
+
+[qa]
+10.30.40.230
+
+[prod]
+10.10.30.4
+
+# Not recommended to use user and password like this you need to store it in vault
+[dev:vars]
+ansible_user=ansadmin
+ansible_ssh_pass=ansadmin

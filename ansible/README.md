@@ -16,7 +16,7 @@ You can setup in cloud or virtualmachine using virtualization.
 
 #### Configure the following
 
-```
+```bash
 # Step 1: Create ansadmin user across all servers
 useradd -s /bin/bash -m -d /home/ansadmin ansadmin
 
@@ -39,5 +39,100 @@ echo "ip-host" >> hosts
 # Step 5 : Verify connectivity from your ansible controller node to ansible managed nodes using
 ansible all -m ping -i ./hosts
 ansible all -m ansible.builtin.ping
+```
 
+### Setup
+
+```bash
+# clone the repository
+git clone https://github.com/shreyash99ramtekkar/devops_tools_config.git
+
+# Copy the ansible folder into the directory you want to work in
+
+cp -r ./devops_tools_config/ansible/ansible /home/${USER}
+
+# Setup the configr as per your need
+
+vim /home/${USER}/ansible/ansible.cfg
+
+# Start working
+
+# Connect to the ansible controller using VS code 
+# Install the ssh plugin in the VS Code on your laptop and connect to the remote host ansible folder
+
+
+```
+
+
+
+### Authentication using username and password
+
+```bash
+# Edit the file
+vim /etc/sshd/sshd_config
+
+#Search for the string PasswordAuthentication and change its value to yes
+
+PasswordAuthentication yes
+
+# Restart the service
+
+sudo systemctl restart sshd
+
+# Test using password from controller
+ansible all -m ping --user ansadmin -k
+
+# In case it ask to install the sshpass 
+apt-get install sshpass
+
+
+```
+
+
+### Custom facts - can be used to keep track of application version
+```bash
+
+# Create a facts directory on the manged nodes
+ansible all -m file -a 'path=/etc/ansible/facts.d state=directory' -b
+
+# Copy the fact file to the managed nodes
+ansible all -m copy -a 'src=java.fact dest=/etc/ansible/facts.d/java.fact mode=0755' -b
+
+# Check the facts
+ansible all -m setup -a 'filter=ansible_local'
+
+
+
+
+```
+
+
+### Good Habbits
+
+```bash
+# Check which configration file its using
+ansible --version
+
+
+# check on which server the playbook is going to run
+ansible <group-name> --list 
+
+# Check the Playbook syntax
+ansible-playbook main.yaml --syntax-check
+
+# Use ansible-lint to find potential errors, syntax error, undefined variables etc in playbook
+ansible-lint main.yaml
+
+
+# Dry run the command
+
+
+# While running the playbook pass the hosts as the varaible
+ansible-playbook main.yaml -e 'reqHosts=dev'
+# inside the playbook you need to write   hosts: "{{reqHosts}}"
+
+# Observed the play recap after the execution
+ok,ignored,skipped,failed,rescued,changed,unreachable
+
+```
 
