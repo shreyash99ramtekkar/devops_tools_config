@@ -131,5 +131,37 @@ Why we need it
 
 
 1. Go to the Global jenkins setting and click on the Nodes
-2. Configure a new node with the proper lables and tools
+2. Configure a new node with the proper lables and tools(jdk)
 3. install the agent on the node (Click on the status icon you will see the steps necessary)
+5. Add the crontab entry into the root so that jenkins node will automatically come online 
+```bash
+crontab -e
+
+@reboot java -jar <agent.jar absolute_path> -url http://<ip>:<port>/ -secret <secret> -name <name of node> -workDir <jenkins_home_dir_path>
+
+```
+6. If you are getting following error go to Security ---> agent ---> Random and save
+```bash
+INFO: Could not locate server among [http://192.168.1.39:8080/]; waiting 10 seconds before retry
+java.io.IOException: http://192.168.1.39:8080/tcpSlaveAgentListener/ is invalid: 404 Not Found
+
+```
+
+
+### Step 5: Setup the Notification - Slack 
+Ref: https://plugins.jenkins.io/slack/
+1. Create secrets
+2. Follow the documentation
+![alt text](image-3.png)
+
+
+### Step 6: Sonar Integration - Static Code Quality
+1. Setup : https://docs.sonarsource.com/sonarqube/10.5/analyzing-source-code/ci-integration/jenkins-integration/global-setup/
+2. Go to the project ---> add build step ---> Execute SonarQube Scanner ---> Save
+3. Run the pipeline
+
+
+### Step 7: Setup the Jenkins DSL plugin
+1. Setup: https://plugins.jenkins.io/job-dsl/
+2. 
+
