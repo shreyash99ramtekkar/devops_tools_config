@@ -159,3 +159,9 @@ Ref: https://plugins.jenkins.io/slack/
 1. Setup : https://docs.sonarsource.com/sonarqube/10.5/analyzing-source-code/ci-integration/jenkins-integration/global-setup/
 2. Go to the project ---> add build step ---> Execute SonarQube Scanner ---> Save
 3. Run the pipeline
+
+
+### Step 7: Setup the Jenkins DSL plugin
+1. Setup: https://plugins.jenkins.io/job-dsl/
+2. 
+
